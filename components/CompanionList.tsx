@@ -17,7 +17,7 @@ interface CompanionListInterface{
    companions?:Companion[],
    classNames?:string
 }
-const CompanionList = ({title,companions,classNames}:CompanionListInterface) => {
+const CompanionList = ({companions,classNames}:CompanionListInterface) => {
   return (
     <article className={cn('companion-list',classNames)}>
       <h1 className='font-bold text-3xl py-2.5'>Recent Sessions</h1>
