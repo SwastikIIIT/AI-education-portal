@@ -22,7 +22,6 @@ const CompanionList = ({companions,classNames}:CompanionListInterface) => {
     <article className={cn('companion-list',classNames)}>
       <h1 className='font-bold text-3xl py-2.5'>Recent Sessions</h1>
       <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="text-lg w-2/3">Lessons</TableHead>
