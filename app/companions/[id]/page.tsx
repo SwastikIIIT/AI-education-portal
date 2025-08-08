@@ -13,8 +13,10 @@ const CompanionSession = async({params}:CompanionSessionProps) => {
   const {id}=await params;
   const companion=await getCompanion(id);
   const user=await currentUser();
+
+
   console.log(companion);
- 
+  console.log(user);
   if(!user)redirect("/sign-in");
   if(!companion)redirect("/companions");
 
