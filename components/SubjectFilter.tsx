@@ -15,7 +15,7 @@ const SubjectFilter = () => {
       const pathname=usePathname();
       const router=useRouter();
       const searchParams=useSearchParams();
-      const query=searchParams.subject?searchParams.subject:'';
+      const query=searchParams.get("subject") || '';
     
       const [searchQuery,setSearchQuery]=useState('');
     

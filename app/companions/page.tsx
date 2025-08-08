@@ -1,10 +1,10 @@
 import CompanionCard from '@/components/CompanionCard';
-import SubjectFilter from '@/components/SubjectFilter';
 import SearchInput from '@/components/SearchInput';
+import SubjectFilter from '@/components/SubjectFilter';
 import { getAllCompanions } from '@/lib/actions/companion.action';
 import { getSubjectColor } from '@/lib/utils';
 import React from 'react'
-import { cp } from 'fs';
+
 
 //Next js page components have access to some props by default like params(route) and searchParams(query)-Destructure them
 //Page components can be async server component 
