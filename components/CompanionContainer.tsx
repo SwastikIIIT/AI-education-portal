@@ -1,10 +1,12 @@
 'use client';
-import { cn, getSubjectColor } from '@/lib/utils'
+import { cn, configureAssistant, getSubjectColor } from '@/lib/utils'
 import { vapi } from '@/lib/vapi.sdk';
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react'
 import soundwaves from '@/constants/soundwaves.json'
+import { AssistantOverrides, CreateAssistantDTO } from '@vapi-ai/web/dist/api';
+
 
 enum CallStatus{
     INACTIVE='INACTIVE',
@@ -19,6 +21,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
    const [isSpeaking,setIsSpeaking]=useState(false);
    const lottieRef=useRef<LottieRefCurrentProps>(null);
    const [isMuted,setIsMuted]=useState(true);
+   const [messages,setMessages]=useState<SavedMessage[]>([]);
 
   const toggleMicrophone=()=>{
         const status=vapi.isMuted();
@@ -28,18 +31,22 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
 
   const handleCall=async()=>{
       setCallStatus(CallStatus.CONNECTING);
-
-      const assistantOverrides={
-        variableValues:[topic,subject,style],
+      
+      const assistantOverrides:AssistantOverrides={
+        variableValues:{topic,subject,style},
         clientMessages:['transcript'],
         serverMessages:[],
       }
 
-      vapi.start();
+      const assistant:CreateAssistantDTO=configureAssistant(voice,style);
+
+      vapi.start(assistant,assistantOverrides);
   }
 
   const handleDisconnect=()=>{
+     setCallStatus(CallStatus.FINISHED);
 
+     vapi.stop();
   }
    useEffect(()=>{
        if(lottieRef)
@@ -52,7 +59,13 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
    useEffect(()=>{
             const onCallStart=()=>setCallStatus(CallStatus.ACTIVE);
             const onCallEnd=()=>setCallStatus(CallStatus.FINISHED);
-            const onMessage=()=>{};
+            const onMessage=(message:Message)=>{
+                 if(message.type==='transcript')
+                 {
+                      const newMessage={role:message.role,content:message.transcript};
+                      setMessages((prev)=>[newMessage,...prev]);
+                 }
+            };
             const onError=(error:Error)=>console.log('Error',error);
             const onSpeechStart=()=>setIsSpeaking(true);
             const onSpeechEnd=()=>setIsSpeaking(false);
@@ -76,7 +89,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
    },[]);
   
     return (
-      <section className='flex flex-col h-[70vh]'>
+      <section className='flex flex-col h-[75vh]'>
           <section className='flex gap-8 max-sm:flex-col'>
               <div className='companion-section py-6'>
                   <div className='companion-avatar' style={{backgroundColor:getSubjectColor(subject)}}>
@@ -106,24 +119,43 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
                      <Image src={userImage} alt={userName} width={130} height={130} className='rounded-lg'/>
                      <p className='font-bold text-2xl'>{userName}</p>
                  </div>
+                 
 
-                 <button className={cn('btn-mic',callStatus!==CallStatus.ACTIVE && 'cursor-not-allowed')} onClick={toggleMicrophone} disabled={callStatus !== CallStatus.ACTIVE}>
+                 {/*For muting the agent */}
+                 <button className={cn('btn-mic')} onClick={toggleMicrophone} disabled={callStatus!==CallStatus.ACTIVE}>
                      <Image src={!isMuted?"/icons/mic-on.svg":"/icons/mic-off.svg"} alt='MIC' width={36} height={36}/>
                      <p className='max-sm:hidden'>{isMuted?"Turn on Microphone":"Turn off Microphone"}</p>
                  </button>
-
+                 
+                 {/*Starting and ending session*/}
                  <button className={cn('rounded-lg py-2 cursor-pointer transition-colors w-full text-white',
                     callStatus===CallStatus.ACTIVE?"bg-red-700":"bg-primary",
                     callStatus===CallStatus.CONNECTING && 'animate-pulse'
                    )}
                    onClick={callStatus===CallStatus.ACTIVE?handleDisconnect:handleCall}
                   >{callStatus===CallStatus.ACTIVE?"End Session":callStatus===CallStatus.CONNECTING?"Connecting":"Start Session"}</button>
-                 {/* <div className=''></div> */}
+                 
               </div>
           </section>
 
-          <section className='transcript'>
-              <div className='transcript-message no-scrollbar'>Transcript Speech</div>
+          <section className='transcript my-4 pt-2'>
+              <div className='transcript-message no-scrollbar'>
+                 {messages.map((message,index)=>{
+                        if(message.role==='assistant')
+                        {
+                            return (
+                               <p key={index} className='max-sm:text-sm'>
+                                {name.split(/[\s-]/)[0]}: <span className='italic'>{message.content}</span></p>
+                            )
+                        }
+                        else
+                        {
+                            return (
+                                <p key={index} className='text-primary max-sm:text-sm'>{userName}: <span className='italic'>{message.content}</span></p>
+                            )
+                        }
+                 })}
+              </div>
               <div className='transcript-fade'/>
           </section>
       </section>

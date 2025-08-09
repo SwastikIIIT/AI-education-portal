@@ -1,10 +1,15 @@
 export const subjects = [
   "maths",
   "language",
-  "science",
+  "physics",
+  "chemistry",
   "history",
   "coding",
   "economics",
+  "geography",
+  "philosophy",
+  "politics",
+  "law"
 ];
 
 export const subjectsColors = {
