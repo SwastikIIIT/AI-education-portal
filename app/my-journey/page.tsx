@@ -46,7 +46,7 @@ const Profile =async() => {
                     <Image src='/icons/cap.svg' alt='cap' width={22} height={22}/>
                     <p className='text-2xl font-bold'>{userCompanions.length}</p>
                   </div>
-                    <div>Companions Completed</div>
+                    <div>Companions Created</div>
               </div>
            </div>
         </section>

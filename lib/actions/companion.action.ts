@@ -112,3 +112,27 @@ export const getUserCompanions=async(userdId:string)=>{
 
     return data;
 }
+
+export const permissions=async()=>{
+    const {userId,has}=await auth();
+    const supabase=createSupabaseClient();
+
+    let limit=0;
+    if(has({plan:'ultimate'}) )
+       return true;
+    else if(has({feature:'3_active_ai_companions'}))
+        limit=3;
+    else if(has({feature:'3_companions'}))
+        limit=3;
+
+    const {data,error}=await supabase
+                           .from('companions')
+                            .select('id',{count:'exact'})
+                            .eq('author',userId);
+    if(error)throw new Error(error?.message);
+
+    const companionCount=data?.length;
+    if(companionCount>=limit)
+        return false;
+    return true;
+}
