@@ -34,7 +34,7 @@ const CompanionSession = async({params}:CompanionSessionProps) => {
                         <div className='subject-badge max-sm:hidden'>{companion.subject}</div>
                     </div>
                     <p className='text-lg'>{companion.topic}</p>
-                    <p className='text-lg md:hidden'>{companion.duration} minutes</p>
+                    <p className='text-lg md:hidden'>{companion.duration} mins</p>
                  </div>
             </div>
 

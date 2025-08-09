@@ -13,12 +13,17 @@ export const subjects = [
 ];
 
 export const subjectsColors = {
-  science: "#E5D0FF",
+  physics: "#E5D0FF",
   maths: "#FFDA6E",
   language: "#BDE7FF",
+  chemistry: "#FF6F61",  // Warm, vivid coral-red
+  philosophy: "#F5CBA7", // Soft light orange-beige, warm and calm  
   coding: "#FFC8E4",
   history: "#FFECC8",
   economics: "#C8FFDF",
+  geography: "#C6E48B",    // Soft earthy green
+   politics: "#FFD1C1",     // Soft coral (friendly but formal)
+  law: "#D6D6FF"           // Pale blue-violet (formal and calm)
 };
 
 export const voices = {

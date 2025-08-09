@@ -6,6 +6,7 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react'
 import soundwaves from '@/constants/soundwaves.json'
 import { AssistantOverrides, CreateAssistantDTO } from '@vapi-ai/web/dist/api';
+import { addSesssionHistory } from '@/lib/actions/companion.action';
 
 
 enum CallStatus{
@@ -58,7 +59,12 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
 
    useEffect(()=>{
             const onCallStart=()=>setCallStatus(CallStatus.ACTIVE);
-            const onCallEnd=()=>setCallStatus(CallStatus.FINISHED);
+            const onCallEnd=()=>{
+                setCallStatus(CallStatus.FINISHED);
+
+                addSesssionHistory(companionId);
+
+            };
             const onMessage=(message:Message)=>{
                  if(message.type==='transcript')
                  {

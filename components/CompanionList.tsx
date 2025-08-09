@@ -17,10 +17,10 @@ interface CompanionListInterface{
    companions?:Companion[],
    classNames?:string
 }
-const CompanionList = ({companions,classNames}:CompanionListInterface) => {
+const CompanionList = ({title,companions,classNames}:CompanionListInterface) => {
   return (
     <article className={cn('companion-list',classNames)}>
-      <h1 className='font-bold text-3xl py-2.5'>Recent Sessions</h1>
+      <h1 className='font-bold text-3xl py-2.5'>{title}</h1>
       <Table>
           <TableHeader>
             <TableRow>
@@ -44,7 +44,7 @@ const CompanionList = ({companions,classNames}:CompanionListInterface) => {
                                height={30}
                              />
                           </div>
-                          <div className='flex flex-col gap-2'>
+                          <div className='flex flex-col gap-2 wrap-normal'>
                               <p className='font-bold text-2xl'>{companion.name}</p>
                               <p className='text-lg'>{companion.topic}</p>
                           </div>

@@ -1,25 +1,26 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
-import { Button } from '@/components/ui/button'
-import { recentSessions } from '@/constants'
+import { getAllCompanions, getRecentSessions } from '@/lib/actions/companion.action'
+import { getSubjectColor } from '@/lib/utils'
 import React from 'react'
 
-const Page = () => {
+const Page =async()=>{
+  const companions=await getAllCompanions({limit:3});
+  const recentSessionsCompanions=await getRecentSessions(5);
   return (
     <>
         <main>
           <h1 className='text-2xl'>Popular Companions</h1>
           <section className='home-section'>
-              <CompanionCard
-                  id="1"
-                  name="Neura-The Brainy Explorer"
-                  topic="Neural Network of Brain"
-                  subject="science"
-                  duration={45}
-                  color="#ffda6e"
-                />
+              {companions.map((companion)=>(
                 <CompanionCard
+                     key={companion.id}
+                    {...companion}
+                    color={getSubjectColor(companion.subject)}
+                  />
+              ))}
+                {/* <CompanionCard
                   id="2"
                   name="Countsy -The Number Wizard"
                   topic="Derivatives & Integrals"
@@ -34,15 +35,15 @@ const Page = () => {
                   subject="Language"
                   duration={30}
                   color="#bde7ff"
-                />
+                /> */}
           </section>
 
           <section className='home-section'>
-              <CompanionList 
-                 title="Recent Sessions"
-                 companions={recentSessions}
-                 classNames="w-2/3 max-lg:w-full "
-              />
+                <CompanionList 
+                   title="Recent Sessions"
+                   companions={recentSessionsCompanions}
+                   classNames="w-2/3 max-lg:w-full "
+                />
               <CTA/>
           </section>
         </main>
