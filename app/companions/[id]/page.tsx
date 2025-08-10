@@ -26,8 +26,11 @@ const CompanionSession = async({params}:CompanionSessionProps) => {
      <main>
         {flag.allowed?(
          <>
-         <div className='rounded-xl w-fit py-1 px-4' style={{backgroundColor:getSubjectColor(companion.subject)}}>
-            <div className='text-black'><span className='font-semibold size-4'>{flag.remainConv}</span> conversations remaining this month.</div>
+         <div className='flex items-center gap-2 rounded-xl w-fit py-1 px-4' style={{backgroundColor:getSubjectColor(companion.subject)}}>
+            <div className='w-2 h-2 bg-black/50 rounded-full animate-pulse'></div>
+            <div className='text-black'>
+               <span className='font-semibold size-4'>{flag.remainConv}</span> conversations remaining this month.
+            </div>
          </div>
          <article className='flex rounded-border md:items-center justify-between p-6 max-md:flex-col'>
             <div className='flex items-center gap-4'>
@@ -40,12 +43,12 @@ const CompanionSession = async({params}:CompanionSessionProps) => {
                         <p className='font-bold text-2xl'>{companion.name}</p>
                         <div className='subject-badge max-sm:hidden'>{companion.subject}</div>
                     </div>
-                    <p className='text-lg'>{companion.topic}</p>
+                    <p className='text-lg lg:max-w-3/4'>{companion.topic}</p>
                     <p className='text-lg md:hidden'>{companion.duration} mins</p>
                  </div>
             </div>
 
-            <div className='text-2xl max-md:hidden'>{companion.duration} minutes</div>
+            <div className='text-2xl max-md:hidden'>{companion.duration} mins</div>
         </article>
 
        <CompanionContainer {...companion} 
