@@ -31,8 +31,8 @@ const CompanionList = ({title,companions,classNames}:CompanionListInterface) => 
             </TableRow>
           </TableHeader>
           <TableBody>
-            {companions?.map((companion)=>(
-              <TableRow key={companion.id}>
+            {companions?.map((companion,index)=>(
+              <TableRow key={index}>
                  <TableCell className="py-4">
                    <Link href={`/companions/${companion.id}`}>
                       <div className='flex items-start gap-3'>

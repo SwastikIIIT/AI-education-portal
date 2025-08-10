@@ -9,7 +9,7 @@ const Subscription = () => {
           <div className='flex flex-col gap-4 justify-center items-center  w-full '>
               <Image src="/images/limit.svg" alt="Companion Limit Reached" width={360} height={250}/>
               <div className='cta-badge'>
-                  Upgrade Your Plan
+                  Unlock Pro Access
               </div>
           </div>
               

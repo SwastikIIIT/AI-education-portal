@@ -7,7 +7,8 @@ import React from 'react'
 const navItems=[
       {label:"Home",href:"/"},
       {label:"Companion",href:"/companions"},
-      {label:"My Journey",href:"/my-journey"}
+      {label:"My Journey",href:"/my-journey"},
+      {label:"Pricing",href:"/subscription"}
 ]
 
 const NavItems = () => {
@@ -16,7 +17,7 @@ const NavItems = () => {
       <nav className='flex items-center gap-4'>
           {navItems.map(({label,href})=>(
             <Link href={href} key={label} 
-               className={cn(pathname===href && 'text-primary bg-amber-200 font-semibold')}>
+               className={cn(pathname===href && 'text-primary text-orange-500 font-semibold')}>
              {label}
             </Link>
           ))}
