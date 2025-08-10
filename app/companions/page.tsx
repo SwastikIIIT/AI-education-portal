@@ -6,7 +6,6 @@ import { getSubjectColor } from '@/lib/utils';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 
-
 //Next js page components have access to some props by default like params(route) and searchParams(query)-Destructure them
 //Page components can be async server component 
 const CompanionLibrary =async({searchParams}:SearchParams) => {

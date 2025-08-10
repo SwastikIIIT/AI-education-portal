@@ -114,17 +114,17 @@ export const getUserCompanions=async(userdId:string)=>{
     return data;
 }
 
-export const permissions=async()=>{
+export const companionPermissions=async()=>{
     const {userId,has}=await auth();
     const supabase=createSupabaseClient();
 
-    let limit=0;
-    if(has({plan:'ultimate'}) )
-       return true;
+    let limit=0; 
+    if(has({plan:'ultimate_plan'}) )
+       return {allowed:true};
     else if(has({feature:'3_active_ai_companions'}))
         limit=3;
-    else if(has({feature:'3_companions'}))
-        limit=3;
+    else if(has({feature:'10_companions'}) || has({plan:'pro_plan'}))
+        limit=10;
 
     const {data,error}=await supabase
                            .from('companions')
@@ -134,8 +134,38 @@ export const permissions=async()=>{
 
     const companionCount=data?.length;
     if(companionCount>=limit)
-        return false;
-    return true;
+        return {allowed:false,message:`You've reached your companion limit (${limit}).Upgrade to create more companions and unlock premium features.`};
+   
+    return {allowed:true,message:`Remaining Companions Count : ${limit-companionCount}`};
+}
+
+export const conversationPermissions=async()=>{
+    const {has,userId}=await auth();
+    const supabase=createSupabaseClient();
+
+    let conv=30;
+    if(has({plan:'ultimate_plan'}) || has({plan:'proplan'}))
+        return {allowed:true};
+    else if(has({feature:'30_conversations_per_month'}) || has({plan:'free_plan'}))
+        conv=30;
+
+    const now = new Date();
+    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    const {data,error}=await supabase
+                       .from('companions')
+                       .select('id',{count:'exact'})
+                       .eq('author',userId)
+                       .gte('created_at',firstDayOfMonth.toISOString())
+                       .lte('created_at',lastDayOfMonth.toISOString());
+
+    if(error) throw new Error(error?.message);
+
+    const conversationCount=data?.length;
+    if(conversationCount>=conv)
+        return {allowed:false,message:`You've reached your monthly conversation limit (${conv}).Upgrade for unlimited conversations.`};
+    return {allowed:true,remainConv:conv-conversationCount}
 }
 
 export const addBookmark=async(companionId:string,path:string)=>{

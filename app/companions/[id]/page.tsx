@@ -1,8 +1,9 @@
 import CompanionContainer from '@/components/CompanionContainer';
-import { getCompanion } from '@/lib/actions/companion.action';
-import { getSubjectColor } from '@/lib/utils';
+import { conversationPermissions, getCompanion } from '@/lib/actions/companion.action';
+import { cn, getSubjectColor } from '@/lib/utils';
 import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
 interface CompanionSessionProps{
@@ -11,26 +12,32 @@ interface CompanionSessionProps{
 
 const CompanionSession = async({params}:CompanionSessionProps) => {
   const {id}=await params;
-  const companion=await getCompanion(id);
   const user=await currentUser();
 
+  const companion=await getCompanion(id);
+  const flag=await conversationPermissions();
 
-  console.log(companion);
-  console.log(user);
+//   console.log(companion);
+//   console.log(user);
   if(!user)redirect("/sign-in");
   if(!companion)redirect("/companions");
 
   return (
      <main>
-        <article className='flex rounded-border md:items-center justify-between p-6 max-md:flex-col'>
+        {flag.allowed?(
+         <>
+         <div className='rounded-xl w-fit py-1 px-4' style={{backgroundColor:getSubjectColor(companion.subject)}}>
+            <div className='text-black'><span className='font-semibold size-4'>{flag.remainConv}</span> conversations remaining this month.</div>
+         </div>
+         <article className='flex rounded-border md:items-center justify-between p-6 max-md:flex-col'>
             <div className='flex items-center gap-4'>
                 <div className='size-[72px] rounded-lg flex items-center justify-center max-sm:hidden'
                      style={{backgroundColor:getSubjectColor(companion.subject)}}>
                     <Image src={`/icons/${companion.subject}.svg`} alt={companion.subject} width={35} height={35}/>
                  </div>
                  <div className='flex flex-col gap-2'>
-                    <div className='flex items-center gap-2'>
-                        <p className='font-bold text-2xl'>{companion.name} <span className='font-light max-sm:hidden'>||</span></p>
+                    <div className='flex items-center gap-3'>
+                        <p className='font-bold text-2xl'>{companion.name}</p>
                         <div className='subject-badge max-sm:hidden'>{companion.subject}</div>
                     </div>
                     <p className='text-lg'>{companion.topic}</p>
@@ -45,7 +52,18 @@ const CompanionSession = async({params}:CompanionSessionProps) => {
           userName={user.firstName!}
           userImage={user.imageUrl!}
           companionId={id}
-       />
+       /></>):
+       (
+          <article className='companion-limit '>
+               <Image src="/images/limit.svg" alt="Companion Limit Reached" width={360} height={250}/>
+               <div className='cta-badge'>
+                    Unlock premium access
+               </div>
+               <h1>You’ve Reached Your Limit</h1>
+               <p>{flag.message}</p>
+              <Link href='/subscription' className='btn-primary justify-center w-full'>Upgrade Your Plan</Link>
+           </article>
+       )}
      </main>
   )
 }

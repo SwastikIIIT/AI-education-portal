@@ -103,7 +103,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
                          callStatus===CallStatus.INACTIVE || callStatus===CallStatus.FINISHED?'opacity-1001':'opacity-0',
                           callStatus===CallStatus.CONNECTING && 'opacity-100 animate-pulse'
                         )}>
-                        <Image src={`/icons/${subject}.svg`} alt={subject} width={150} height={150} className='max-sm:w-fit'/>
+                        <Image src={`/icons/${subject}.svg`} alt={subject} width={150} height={150} className='max-md:w-fit max-md:hidden'/>
                       </div>
 
                       <div className={cn('absolute transition-opacity duration-1000',
