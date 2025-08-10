@@ -1,4 +1,5 @@
 import { SignIn } from '@clerk/nextjs'
+import Image from 'next/image'
 import Link from 'next/link'
 
 
@@ -8,9 +9,9 @@ export default function Page() {
       <div className='w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center'>
         <div className='hidden lg:flex flex-col space-y-8'>
           <div className='space-y-6'>
-            <Link href="/" className='mb-8'>
-              <span className='text-2xl font-bold text-gray-800'>Converso</span>
-            </Link>
+           <Link href="/" >
+                <Image src='/images/logo.png' alt='logo' width={150} height={150}/>
+              </Link>
             
             <div className='space-y-4'>
               <h1 className='text-4xl font-bold text-gray-900 leading-tight'>
@@ -55,12 +56,6 @@ export default function Page() {
           <div className='w-full max-w-md space-y-6'>
             
     
-            <div className='lg:hidden text-center space-y-4'>
-              <Link href="/">
-                <span className='text-xl font-bold text-gray-800'>Converso</span>
-              </Link>
-              <h2 className='text-2xl font-bold text-gray-900'>Welcome back!</h2>
-            </div>
 
             <div className='bg-transparent rounded-2xl'>
               <SignIn 

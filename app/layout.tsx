@@ -5,14 +5,14 @@ import Navbar from "@/components/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 
  export const dynamic = 'force-dynamic'
- 
+
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Converso",
+  title: "Intelli Learn",
   description: "Real-time AI Teaching Platform",
 };
 
