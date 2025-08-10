@@ -1,12 +1,12 @@
 import CompanionCard from '@/components/CompanionCard'
-import CompanionCard2 from '@/components/CompanionCard2'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
 import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
-import { UserProfile } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import React from 'react'
+
+export const dynamic = 'force-dynamic'
 
 const Page =async()=>{
   const companions=await getAllCompanions({limit:3});
