@@ -30,10 +30,8 @@ export default function RootLayout({
 {/* <body className={`${bricolage.variable} antialiased bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 bg-fixed relative`}> */}
 
           <ClerkProvider appearance={{variables:{colorPrimary:"#f35933"}}}>
-            <div className="relative z-10">
               <Navbar/>
               {children}
-            </div>
           </ClerkProvider>
          </body>
     </html>
