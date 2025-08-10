@@ -1,13 +1,24 @@
 import CompanionCard from '@/components/CompanionCard'
+import CompanionCard2 from '@/components/CompanionCard2'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
-import { getAllCompanions, getRecentSessions } from '@/lib/actions/companion.action'
+import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
+import { currentUser } from '@clerk/nextjs/server'
 import React from 'react'
 
 const Page =async()=>{
   const companions=await getAllCompanions({limit:3});
   const recentSessionsCompanions=await getRecentSessions(5);
+   const user=await currentUser();
+  
+      let userBookmarks:any[]=[];
+      if(user)
+      {
+         userBookmarks=await getBookmarks(user?.id);
+      }
+  
+      const bookmarkedIds=new Set(userBookmarks.map(bookmark=>bookmark.id));
   return (
     <>
         <main>
@@ -18,6 +29,7 @@ const Page =async()=>{
                      key={companion.id}
                     {...companion}
                     color={getSubjectColor(companion.subject)}
+                    isBookmarked={bookmarkedIds.has(companion.id)}
                   />
               ))}
                 {/* <CompanionCard

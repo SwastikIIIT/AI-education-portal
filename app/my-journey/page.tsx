@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion"
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation';
-import { getUserCompanions, getUserSessions } from '@/lib/actions/companion.action';
+import { getBookmarks, getUserCompanions, getUserSessions } from '@/lib/actions/companion.action';
 import Image from 'next/image';
 import CompanionList from '@/components/CompanionList';
 
@@ -17,6 +17,7 @@ const Profile =async() => {
 
   const userCompanions=await getUserCompanions(user.id);
   const userSessions=await getUserSessions(user.id);
+  const bookmarks=await getBookmarks(user.id);
 
 
   return (
@@ -52,6 +53,16 @@ const Profile =async() => {
         </section>
           
            <Accordion type="multiple">
+             <AccordionItem value="companions">
+                <AccordionTrigger className='font-bold text-2xl'>My Bookmarks{`(${bookmarks.length})`}</AccordionTrigger>
+                <AccordionContent>
+                   <CompanionList 
+                      title='Bookmarks'
+                      companions={bookmarks}
+                   />
+                </AccordionContent>
+              </AccordionItem>
+
               <AccordionItem value="recent">
                 <AccordionTrigger className='font-bold text-2xl'>Recent Sessions</AccordionTrigger>
                 <AccordionContent>

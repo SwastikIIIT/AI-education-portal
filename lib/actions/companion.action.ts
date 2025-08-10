@@ -2,6 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server"
 import { createSupabaseClient } from "../supabase";
+import { revalidatePath } from "next/cache";
 
 export const createCompanion=async(formData:CreateCompanion)=>{
     const {userId:author}=await auth();   // accessing used id from clerk
@@ -135,4 +136,47 @@ export const permissions=async()=>{
     if(companionCount>=limit)
         return false;
     return true;
+}
+
+export const addBookmark=async(companionId:string,path:string)=>{
+    const {userId}=await auth();
+    if(!userId) return null;
+    
+    const supabase=createSupabaseClient();
+    const {data,error}=await supabase
+                            .from('bookmarks')
+                            .insert({user_id:userId,companion_id:companionId});
+    if(error)throw new Error(error.message);
+    revalidatePath(path);
+    return data;
+}
+
+export const removeBookmark=async(companionId:string,path:string)=>{
+    const {userId}=await auth();
+    if(!userId) return null;
+    
+    const supabase=createSupabaseClient();
+    const {data,error}=await supabase
+                            .from('bookmarks')
+                            .delete()
+                            .eq('user_id',userId)
+                            .eq('companion_id',companionId);
+    if(error)throw new Error(error.message);
+    revalidatePath(path);
+    return data;
+
+}
+
+
+export const getBookmarks=async(userId:string)=>{
+
+    const supabase=createSupabaseClient();
+    const {data,error}=await supabase
+                            .from('bookmarks')
+                            .select('companions:companion_id(*)')
+                            .eq('user_id',userId)
+    if(error)throw new Error(error.message);
+ 
+    return data.map(({companions})=>(companions));
+
 }
