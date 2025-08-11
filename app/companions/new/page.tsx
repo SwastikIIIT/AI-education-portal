@@ -6,6 +6,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
+import { Metadata } from 'next';
+
+export const metadata:Metadata= {
+  title: "Create Your AI Companion – Intelli Learn",
+  description: "Design and personalize your own AI tutor with Intelli Learn. Choose its subject, style, and personality to match your learning needs.",
+}
+
 
 const NewCompanion = async() => {
   const {userId} = await auth();

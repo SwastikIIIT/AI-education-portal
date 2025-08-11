@@ -8,10 +8,18 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-export const metadata: Metadata = {
-  title: "Intelli Learn – Your Personalized AI Learning Platform",
-  description: "Learn smarter with your AI tutor—tailored lessons, instant answers, and interactive guidance."
-};
+export async function generateMetadata(
+  { params }: CompanionSessionProps
+): Promise<Metadata> {
+  const { id } = await params;
+  const companion = await getCompanion(id);
+
+
+  return {
+    title: `Intelli Learn – Chat with ${companion.name.split(/[\s-]/)[0]}`,
+    description: `Learn smarter with ${companion.name}, your AI tutor for ${companion.subject}.`
+  };
+}
 
 
 interface CompanionSessionProps{
