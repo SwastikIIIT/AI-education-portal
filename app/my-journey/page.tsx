@@ -11,6 +11,7 @@ import { getBookmarks, getUserCompanions, getUserSessions } from '@/lib/actions/
 import Image from 'next/image';
 import CompanionList from '@/components/CompanionList';
 import type { Metadata } from "next";
+import Graph from '@/components/Graph';
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await currentUser();
@@ -107,6 +108,32 @@ const Profile = async() => {
 
       <div className='bg-white/70 backdrop-blur-sm rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-white/20 overflow-hidden'>
         <Accordion type="multiple" className='w-full'>
+          
+         <AccordionItem value="monthly_progress" className='border-b border-gray-100 last:border-b-0'>
+           <span className='absolute top-7 left-[275px] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold'>
+                    PRO
+            </span>
+          <AccordionTrigger className='px-8 py-6 hover:bg-gray-50/50 text-left'>
+            <div className='flex items-center gap-4'>
+              <div className='w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center shadow-sm'>
+                <svg className='w-5 h-5 text-white' fill='currentColor' viewBox='0 0 20 20'>
+                  <path fillRule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clipRule='evenodd'/>
+                </svg>
+              </div>
+              <div>
+                <div className='flex items-center gap-3'>
+                  <h3 className='font-bold text-xl text-gray-900'>Monthly Progress</h3>
+                 
+                </div>
+                <p className='text-sm text-gray-500'>Check your journey</p>
+              </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className='px-8 pb-6'>
+              <Graph/>
+          </AccordionContent>
+        </AccordionItem>
+
           <AccordionItem value="bookmarks" className='border-b border-gray-100 last:border-b-0'>
             <AccordionTrigger className='px-8 py-6 hover:bg-gray-50/50 text-left'>
               <div className='flex items-center gap-4'>
