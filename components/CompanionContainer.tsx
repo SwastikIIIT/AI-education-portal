@@ -98,7 +98,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
       <section className='flex flex-col h-[75vh] py-4'>
           <section className='flex gap-8 max-sm:flex-col mb-6'>
               
-              <div className='companion-section py-6 '>
+              <div className='companion-section py-6'>
                   <div className='relative w-48 h-48 rounded-full shadow-lg border-4 border-white'
                        style={{backgroundColor:getSubjectColor(subject)}}>
                        <div className={cn('absolute inset-0 flex items-center justify-center transition-opacity duration-1000',
@@ -146,7 +146,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
               </div>
 
               
-              <div className='user-section'>
+              <div className='user-section' >
                  <div className='py-5 flex flex-col items-center justify-between gap-3 hidden sm:flex'>
                      <div className='w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-white'>
                        <Image 
@@ -193,7 +193,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
                       callStatus === CallStatus.CONNECTING ? "Connecting..." : 
                       "Start Session"}
                    </button>
-                 </div>
+              </div>
           </section>
 
           <section className='w-full border border-gray-600 bg-gray-50 rounded-xl p-4 relative overflow-hidden min-h-[300px]'>
