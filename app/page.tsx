@@ -1,6 +1,9 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
+import HeroSections from '@/components/Hero'
+import Hero from '@/components/Hero'
+
 import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
 import { currentUser } from '@clerk/nextjs/server'
@@ -10,7 +13,7 @@ export const dynamic = 'force-dynamic'
 
 const Page =async()=>{
   const companions=await getAllCompanions({limit:3});
-  const recentSessionsCompanions=await getRecentSessions(5);
+  const recentSessionsCompanions=await getRecentSessions(4);
    const user=await currentUser();
   
       let userBookmarks:any[]=[];
@@ -23,6 +26,7 @@ const Page =async()=>{
   return (
     <>
         <main>
+          <HeroSections/>
           <h1 className='text-2xl'>Popular Companions</h1>
           <section className='home-section'>
               {companions.map((companion)=>(
