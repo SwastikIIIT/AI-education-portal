@@ -1,6 +1,12 @@
 import { SignIn } from '@clerk/nextjs'
+import { Metadata } from 'next';
 import Image from 'next/image'
 import Link from 'next/link'
+
+export const metadata:Metadata = {
+  title: "Intelli Learn || Sign-In",
+  description: "Secured Sign-in by Clerk in Intelli Learn"
+};
 
 
 export default function Page() {

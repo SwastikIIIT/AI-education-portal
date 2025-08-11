@@ -10,7 +10,17 @@ import { redirect } from 'next/navigation';
 import { getBookmarks, getUserCompanions, getUserSessions } from '@/lib/actions/companion.action';
 import Image from 'next/image';
 import CompanionList from '@/components/CompanionList';
+import type { Metadata } from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+  const user = await currentUser();
+  const appName = "Intelli Learn";
+
+  return {
+    title: user?.firstName ? `${appName} | ${user.firstName}` : appName,
+    description: "Personalized AI education platform"
+  };
+}
 const Profile = async() => {
   const user = await currentUser();
   if(!user) redirect('/sign-in');

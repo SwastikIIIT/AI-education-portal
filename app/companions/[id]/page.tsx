@@ -2,10 +2,18 @@ import CompanionContainer from '@/components/CompanionContainer';
 import { conversationPermissions, getCompanion } from '@/lib/actions/companion.action';
 import { cn, getSubjectColor } from '@/lib/utils';
 import { currentUser } from '@clerk/nextjs/server';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "Intelli Learn – Your Personalized AI Learning Platform",
+  description: "Learn smarter with your AI tutor—tailored lessons, instant answers, and interactive guidance."
+};
+
+
 interface CompanionSessionProps{
   params:Promise<{id:string}>
 }
