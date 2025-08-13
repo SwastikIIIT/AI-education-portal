@@ -1,5 +1,5 @@
 
-#🎓 AI Education Portal
+## 🎓 Intelli Learn-AI Education Portal
 
 
 <div align="center">
