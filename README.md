@@ -1,4 +1,6 @@
-# 🎓 AI Education Portal
+
+#🎓 AI Education Portal
+
 
 <div align="center">
 
@@ -12,8 +14,7 @@
 
 *A cutting-edge online platform designed to make learning intelligent, interactive, and accessible for everyone.*
 
-[🚀 Live Demo](https://yourdomain.com) • [📖 Documentation](https://docs.yourdomain.com) • [🐛 Report Bug](https://github.com/yourusername/ai-education-portal/issues) • [💡 Request Feature](https://github.com/yourusername/ai-education-portal/issues)
-
+[🚀 Live Demo](https://yourdomain.com) 
 </div>
 
 ---
@@ -25,7 +26,7 @@ Our AI Education Portal leverages advanced artificial intelligence technologies 
 ### ✨ Key Highlights
 
 - 🧠 **AI-Powered Learning**: Personalized learning paths that adapt to your pace and style
-- 📊 **Real-Time Analytics**: Track progress with intelligent insights and assessments
+- 📊 **Real-Time Analytics**: Track progress with intelligent insights
 - 🎯 **Adaptive Content**: Dynamic content that evolves based on learning patterns
 - 🌐 **Cloud-First Architecture**: Scalable and robust infrastructure on AWS
 - 🔒 **Secure Authentication**: Enterprise-grade security with Clerk integration
@@ -36,16 +37,17 @@ Our AI Education Portal leverages advanced artificial intelligence technologies 
 ## 🚀 Features
 
 ### 🎯 Core Learning Features
-- **Personalized Learning Paths** - AI-driven course recommendations
-- **Interactive Assessments** - Real-time quizzes and evaluations
+- **Personalized Learning Paths** - AI-driven personalized courses
 - **Progress Tracking** - Comprehensive learning analytics
-- **Multi-Subject Support** - Wide range of courses and tutorials
+- **Multi-Subject Support** - Wide range of courses and subjects
 - **Adaptive Content Delivery** - Content that matches your learning style
+- **Secured Sunscription** - Mange your subscriptions securely 
 
 ### 🔧 Technical Features
 - **User Authentication** - Secure login with Clerk
 - **Real-Time Database** - PostgreSQL via Supabase
 - **Responsive UI** - Modern design with Tailwind CSS
+- **Pricing and Billing** -Powered by Clerk and Stripe
 - **AI Integration** - Advanced machine learning algorithms
 - **Cloud Deployment** - Scalable AWS EC2 infrastructure
 
@@ -61,7 +63,8 @@ Our AI Education Portal leverages advanced artificial intelligence technologies 
 | **Backend** | ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) |
 | **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white) |
 | **Authentication** | ![Clerk](https://img.shields.io/badge/Clerk-6C47FF?style=flat-square&logo=clerk&logoColor=white) |
-| **Deployment** | ![AWS EC2](https://img.shields.io/badge/AWS_EC2-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) |
+| **Payement**|Stripe
+| **Deployment** | ![AWS EC2](https://img.shields.io/badge/AWS_EC2-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)|
 | **Process Management** | ![PM2](https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=pm2&logoColor=white) |
 | **Reverse Proxy** | ![NGINX](https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=nginx&logoColor=white) |
 
@@ -76,7 +79,8 @@ Before you begin, ensure you have the following installed:
 - **Node.js** (v18.0 or higher)
 - **npm** or **yarn**
 - **Git**
-- **AWS CLI** (for deployment)
+- **AWS Managment Console** (for deployment)
+- **Ubuntu(or any other distro)** (for configuring virtual machine) 
 
 ---
 
@@ -106,18 +110,23 @@ cp .env.example .env
 Edit the `.env` file with your configuration:
 
 ```env
-# Database
-DATABASE_URL=your_supabase_connection_string
-SUPABASE_URL=your_supabase_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
+#Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY
 
-# Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
+#Clerk-Custom Auth
+NEXT_PUBLIC_CLERK_SIGN_IN_URL
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL
 
-# Application
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NODE_ENV=development
+#Supabase
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+#Vapi
+NEXT_PUBLIC_VAPI_WEB_TOKEN
+
+#Sentry
+SENTRY_AUTH_TOKEN
 ```
 
 ### 4. Run Development Server
@@ -128,7 +137,7 @@ npm run dev
 yarn dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see the application running! 🎉
+Visit [https://ai-education-portal.vercel.app/] to see the application running! 🎉
 
 ---
 
@@ -139,7 +148,8 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application runn
 1. **Launch Ubuntu EC2 Instance**
    ```bash
    # Connect to your EC2 instance
-   ssh -i your-key.pem ubuntu@your-ec2-public-ip
+    chmod 400 "privateKey.pem"
+    ssh -i your-key.pem ubuntu@your-ec2-public-ip
    ```
 
 2. **Install Required Software**
@@ -148,7 +158,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application runn
    sudo apt update && sudo apt upgrade -y
    
    # Install Node.js
-   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+   curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
    sudo apt-get install -y nodejs
    
    # Install PM2 and NGINX
@@ -159,18 +169,24 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application runn
 3. **Deploy Application**
    ```bash
    # Clone and setup project
-   git clone https://github.com/yourusername/ai-education-portal.git
+   git clone https://github.com/SwastikIIIT/AI-education-portal.git
    cd ai-education-portal
    npm install
    
    # Configure environment
-   cp .env.example .env
-   # Edit .env with your production values
+   nano .env.local
    
+   # Edit .env with your production values
+   Ctrl+O -> Enter-> Ctrl+X
+    
    # Start application with PM2
-   pm2 start npm --name "ai-edu-portal" -- start
+   pm2 start npm --name "intelli" --start
+   pm2 list
    pm2 save
+
+   # For starting application on reboot
    pm2 startup
+   copy the command that will be shown and execute
    ```
 
 ### NGINX Configuration
@@ -178,7 +194,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application runn
 Create NGINX configuration file:
 
 ```bash
-sudo nano /etc/nginx/sites-available/ai-edu-portal
+sudo nano /etc/nginx/sites-available/yourdomain_Or_default
 ```
 
 Add the following configuration:
@@ -189,7 +205,7 @@ server {
     server_name yourdomain.com www.yourdomain.com;
     
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:Port_where_u_are_listening_your_App;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -217,13 +233,13 @@ sudo systemctl restart nginx
 ```
 ai-education-portal/
 ├── 📁 components/          # Reusable UI components
-├── 📁 pages/              # Next.js pages
-├── 📁 styles/             # Global styles and Tailwind config
+├── 📁 app/                 # Next.js pages and routes
 ├── 📁 lib/                # Utility functions and configurations
-├── 📁 hooks/              # Custom React hooks
+├── 📁 constants/          # Dummy data
 ├── 📁 types/              # TypeScript type definitions
 ├── 📁 public/             # Static assets
 ├── 📄 next.config.js      # Next.js configuration
+├── 📄 sentry.config.js    # Sentry.js configuration
 ├── 📄 tailwind.config.js  # Tailwind CSS configuration
 ├── 📄 package.json        # Dependencies and scripts
 └── 📄 README.md           # This file
@@ -246,20 +262,6 @@ const learningPath = await createLearningPath({
 });
 ```
 
-### Tracking Progress
-
-```javascript
-import { updateProgress } from '@/lib/analytics';
-
-await updateProgress({
-  courseId: 'ml-101',
-  lessonId: 'intro-to-ml',
-  completionRate: 85,
-  timeSpent: 3600 // seconds
-});
-```
-
----
 
 ## 🤝 Contributing
 
@@ -295,7 +297,6 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ## 📈 Roadmap
 
-- [ ] Mobile Application (React Native)
 - [ ] Advanced AI Tutoring System
 - [ ] Gamification Features
 - [ ] Multi-language Support
@@ -304,19 +305,13 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👥 Team
 
 <div align="center">
 
-**Built with ❤️ by the AI Education Team**
+**Built with ❤️ by the Swastik Sharma**
 
-[🌐 Website](https://yourdomain.com) • [📧 Contact](mailto:contact@yourdomain.com) • [🐦 Twitter](https://twitter.com/yourusername)
+[📧 Contact](swastikiiit.05@gmail.com) • [ Codolio](https://codolio.com/profile/swastiksharma)
 
 </div>
 
@@ -329,6 +324,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Supabase](https://supabase.com/) - The Open Source Firebase Alternative
 - [Clerk](https://clerk.dev/) - Authentication and User Management
 - [Vercel](https://vercel.com/) - Platform for frontend frameworks and static sites
+- [AWS](https://aws.com/)-For cloud deployement and services
+- [Sentry](https://sentry.com/)-For performance tracking and latency
 
 ---
 
