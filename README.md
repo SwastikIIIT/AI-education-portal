@@ -247,22 +247,6 @@ ai-education-portal/
 
 ---
 
-## 🎯 Usage Examples
-
-### Creating a Learning Path
-
-```javascript
-import { createLearningPath } from '@/lib/ai-education';
-
-const learningPath = await createLearningPath({
-  subject: 'Machine Learning',
-  level: 'beginner',
-  duration: '4 weeks',
-  goals: ['understand basics', 'build first model']
-});
-```
-
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
@@ -292,24 +276,13 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ## 🔒 Security
 
 - **Authentication**: Clerk-powered secure authentication
-- **Data Protection**: Encrypted data transmission and storage
-- **Access Control**: Role-based access management
+- **Data Protection**: Data is stored in vapi securely
+- **Secured Payment**: Secured payment management
 - **Security Headers**: Comprehensive security header configuration
 
+
+## 📈 Roa
 ---
-
-## 📈 Roadmap
-
-- [ ] Advanced AI Tutoring System
-- [ ] Gamification Features
-- [ ] Multi-language Support
-- [ ] Offline Learning Capabilities
-- [ ] Integration with Popular LMS Platforms
-
----
-
-## 👥 Team
-
 <div align="center">
 
 **Built with ❤️ by the Swastik Sharma**
