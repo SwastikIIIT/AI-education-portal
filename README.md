@@ -1,8 +1,20 @@
-
-## 🎓 Intelli Learn-AI Education Portal
-
-
 <div align="center">
+
+<h1 style="
+  font-size: 2.5em;
+  font-weight: bold;
+  background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+">
+🎓 Intelli Learn - AI Education Portal
+</h1>
+
+<!-- Image placeholder with fixed size -->
+<img src="https://github.com/user-attachments/assets/2d841f2c-56b7-4e8f-8f1b-2ecf1025ae11"
+     alt="AI Education Portal" 
+     style="width:800px; height:400px; object-fit:contain;"/>
 
 ![AI Education Portal](https://img.shields.io/badge/AI%20Education-Portal-blue?style=for-the-badge&logo=graduation-cap)
 ![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=for-the-badge&logo=next.js)
@@ -14,10 +26,10 @@
 
 *A cutting-edge online platform designed to make learning intelligent, interactive, and accessible for everyone.*
 
-[🚀 Live Demo](https://yourdomain.com) 
+[🚀 Live Demo](https://ai-education-portal.vercel.app/) 
+
 </div>
 
----
 
 ## 🌟 Overview
 
@@ -63,8 +75,8 @@ Our AI Education Portal leverages advanced artificial intelligence technologies 
 | **Backend** | ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) |
 | **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white) |
 | **Authentication** | ![Clerk](https://img.shields.io/badge/Clerk-6C47FF?style=flat-square&logo=clerk&logoColor=white) |
-| **Payement**|Stripe
-| **Deployment** | ![AWS EC2](https://img.shields.io/badge/AWS_EC2-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)|
+| **Payment** | ![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white) |
+| **Deployment** | ![AWS EC2](https://img.shields.io/badge/AWS_EC2-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) |
 | **Process Management** | ![PM2](https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=pm2&logoColor=white) |
 | **Reverse Proxy** | ![NGINX](https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=nginx&logoColor=white) |
 
