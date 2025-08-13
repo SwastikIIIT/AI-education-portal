@@ -280,8 +280,6 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 - **Secured Payment**: Secured payment management
 - **Security Headers**: Comprehensive security header configuration
 
-
-## 📈 Roa
 ---
 <div align="center">
 
