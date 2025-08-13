@@ -114,17 +114,17 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
                         />
                       </div>
 
-                      <div className={cn('absolute  flex items-center justify-center transition-opacity duration-1000',
+                      <div className={cn('absolute inset-0 flex items-center justify-center transition-opacity duration-1000',
                           callStatus===CallStatus.ACTIVE?'opacity-100':'opacity-0'
                       )}>
                         <Lottie 
                           lottieRef={lottieRef}
                           animationData={soundwaves}
                           autoPlay={false}
-                          className='w-40 h-40'
+                          className='w-44 h-44' 
                         />
-                      </div>
                   </div>
+                </div>
                   
                   <div className='text-center flex flex-col mt-4'>
                     
