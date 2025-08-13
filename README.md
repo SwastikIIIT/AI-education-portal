@@ -283,6 +283,9 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 - **Performance Metrics**: Real-time application monitoring
 - **Error Tracking**: Comprehensive error logging
 - **Analytics**: User behavior and learning analytics
+- **Page Load Performance**: First Contentful Paint,Largest Contentful Paint
+- **API Latencies**: Database queries, external service calls
+- **Error Rates**: JavaScript errors, network failures
 
 ---
 
@@ -332,7 +335,5 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 <div align="center">
 
 **⭐ If you found this project helpful, please consider giving it a star!**
-
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/ai-education-portal?style=social)](https://github.com/yourusername/ai-education-portal)
-
+[![GitHub stars](https://img.shields.io/github/stars/SwastikIIIT/AI-education-portal?style=social)](https://github.com/SwastikIIIT/AI-education-portal)
 </div>
