@@ -4,8 +4,6 @@
   font-size: 2.5em;
   font-weight: bold;
   background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   text-align: center;
 ">
 🎓 Intelli Learn - AI Education Portal
@@ -13,8 +11,9 @@
 
 <!-- Image placeholder with fixed size -->
 <img src="https://github.com/user-attachments/assets/2d841f2c-56b7-4e8f-8f1b-2ecf1025ae11"
+     style="border-radius:20px"
      alt="AI Education Portal" 
-     style="width:800px; height:400px; object-fit:contain;"/>
+       style="border-radius:20px; width:800px; height:400px;object-fit:contain;"/>
 
 ![AI Education Portal](https://img.shields.io/badge/AI%20Education-Portal-blue?style=for-the-badge&logo=graduation-cap)
 ![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=for-the-badge&logo=next.js)
