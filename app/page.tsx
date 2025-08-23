@@ -2,7 +2,7 @@ import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
 import HeroSections from '@/components/Hero'
-import Hero from '@/components/Hero'
+
 
 import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
@@ -59,15 +59,15 @@ const Page =async()=>{
           <section className='home-section'>
             {!user || recentSessionsCompanions.length==0 ?(
                  <div className='w-2/3 max-lg:w-full max-lg:h-[500px] h-[603px]'>
-                    <div className='flex flex-col h-full text-gray-600 bg-gray-50/55 rounded-2xl border border-gray-400'>
+                    <div className='flex flex-col h-full text-gray-600 bg-white/70 rounded-4xl border border-gray-400'>
                       <div className='flex items-center px-6 py-4 border-b border-gray-400'>
-                        <h2 className='text-2xl font-semibold text-black'>Recent Sessions</h2>
+                        <h2 className='text-3xl font-semibold text-black'>Recent Sessions</h2>
                       </div>
                       
                       <div className='flex-1 flex items-center justify-center px-6'>
                         <div className='text-center'>
-                          <div className='w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6'>
-                            <svg className='w-10 h-10 text-gray-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                          <div className='w-25 h-25 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6'>
+                            <svg className='w-12 h-12 text-gray-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                               <path 
                                 strokeLinecap='round' 
                                 strokeLinejoin='round' 
@@ -76,11 +76,11 @@ const Page =async()=>{
                               />
                             </svg>
                           </div>
-                          <p className='text-xl font-medium mb-3 text-gray-800'>No recent sessions yet</p>
+                          <p className='text-2xl font-medium mb-3 text-gray-800'>No recent sessions yet</p>
                           <p className='text-base mb-4 max-w-md mx-auto'>
                             Start learning with our AI companions to see your recent sessions here
                           </p>
-                            <p className='text-sm mt-6'>
+                            <p className='text-md mt-6'>
                               {!user ? 'Sign in to track your learning progress' : 'Begin your first session to get started'}
                             </p>
                         </div>
