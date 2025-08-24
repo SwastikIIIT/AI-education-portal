@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
 import { Metadata } from 'next';
+import Guidelines from '@/components/Guidelines';
 
 export const metadata:Metadata= {
   title: "Create Your AI Companion – Intelli Learn",
@@ -24,8 +25,9 @@ const NewCompanion = async() => {
     <main className='bg-transparent'>
       <div className='container mx-auto px-6 max-w-4xl'>
         {flag.allowed ? (
-          <div className='bg-white rounded-xl shadow-lg overflow-hidden'>
-
+          <>
+          <Guidelines/>
+          <div className='mt-6 bg-white rounded-xl shadow-lg overflow-hidden'>
             <div className='bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6 text-white'>
               <div className='flex items-center justify-between'>
                
@@ -58,6 +60,7 @@ const NewCompanion = async() => {
               <CompanionForm/> 
             </div>
           </div>
+        </>
         ) : (
           <div className='bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden max-w-xl mx-auto'>
 

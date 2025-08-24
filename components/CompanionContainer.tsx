@@ -39,7 +39,7 @@ const CompanionContainer = ({userName,userImage,name,topic,subject,voice,style,c
         serverMessages:[],
       }
 
-      const assistant:CreateAssistantDTO=configureAssistant(voice,style);
+      const assistant:CreateAssistantDTO=configureAssistant(voice,style,subject,topic);
 
       vapi.start(assistant,assistantOverrides);
   }

@@ -13,8 +13,6 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { id } = await params;
   const companion = await getCompanion(id);
-
-
   return {
     title: `Intelli Learn – Chat with ${companion.name.split(/[\s-]/)[0]}`,
     description: `Learn smarter with ${companion.name}, your AI tutor for ${companion.subject}.`

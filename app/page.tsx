@@ -2,8 +2,6 @@ import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import CTA from '@/components/CTA'
 import HeroSections from '@/components/Hero'
-
-
 import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
 import { currentUser } from '@clerk/nextjs/server'
