@@ -42,6 +42,18 @@ export const getAllCompanions=async({limit=10,page=1,subject,topic}:GetAllCompan
     return data;
 }
 
+const deleteCompanion=async(id:string)=>{
+    const supabase=createSupabaseClient();
+    const {data,error}=await supabase
+                       .from('companions')
+                       .delete()
+                       .eq('id',id)
+                       .select();
+    
+    if(error)throw new Error(error?.message || "Failed to delete the companion");
+    return data[0];
+}
+
 
 export const getCompanion=async(id:string)=>{
     const supabase=createSupabaseClient();

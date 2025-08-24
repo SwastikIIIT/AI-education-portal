@@ -30,7 +30,7 @@ const CompanionCard = ({id,name,topic,subject,duration,color,isBookmarked}:Compa
       }
       setBookmarked((prev)=>!prev);
     }
-    console.log(name+" "+isBookmarked);
+    // console.log(name+" "+isBookmarked);
 
   return (
     <article 
@@ -42,17 +42,21 @@ const CompanionCard = ({id,name,topic,subject,duration,color,isBookmarked}:Compa
         <div className='bg-black/80 backdrop-blur-sm text-white px-3 py-1 rounded-4xl text-xs font-semibold uppercase shadow-lg'>
           {subject}
         </div>
-        <button 
-          className='px-2 flex items-center h-full aspect-square cursor-pointer bg-black/80 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-200 shadow-md group-hover:scale-110 transform'
-          onClick={handleBookmark}
-        >
-          <Image
-            src={cn(isBookmarked?'/icons/bookmark-filled.svg':'/icons/bookmark.svg')}
-            alt='bookmark'
-            width={15}
-            height={15}
-          />
-        </button>
+        <div>
+          <button>
+          </button>
+          <button 
+            className='px-2 flex items-center h-full aspect-square cursor-pointer bg-black/80 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-200 shadow-md group-hover:scale-110 transform'
+            onClick={handleBookmark}
+          >
+            <Image
+              src={cn(isBookmarked?'/icons/bookmark-filled.svg':'/icons/bookmark.svg')}
+              alt='bookmark'
+              width={15}
+              height={15}
+            />
+          </button>
+        </div>
       </div>
 
      

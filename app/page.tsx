@@ -4,7 +4,7 @@ import CTA from '@/components/CTA'
 import HeroSections from '@/components/Hero'
 import { getAllCompanions, getBookmarks, getRecentSessions } from '@/lib/actions/companion.action'
 import { getSubjectColor } from '@/lib/utils'
-import { currentUser } from '@clerk/nextjs/server'
+import { auth, currentUser } from '@clerk/nextjs/server'
 import React from 'react'
 
 export const dynamic = 'force-dynamic'
@@ -12,13 +12,13 @@ export const dynamic = 'force-dynamic'
 const Page =async()=>{
   const companions=await getAllCompanions({limit:3});
   const recentSessionsCompanions=await getRecentSessions(4);
-   const user=await currentUser();
-   console.log("User",user);
+   const {userId}=await auth();
+   console.log("User",userId);
   
       let userBookmarks:any[]=[];
-      if(user)
+      if(userId)
       {
-         userBookmarks=await getBookmarks(user?.id);
+         userBookmarks=await getBookmarks(userId);
       }
   
       const bookmarkedIds=new Set(userBookmarks.map(bookmark=>bookmark.id));
@@ -55,7 +55,7 @@ const Page =async()=>{
           </section>
 
           <section className='home-section'>
-            {!user || recentSessionsCompanions.length==0 ?(
+            {!userId || recentSessionsCompanions.length==0 ?(
                  <div className='w-2/3 max-lg:w-full max-lg:h-[500px] h-[603px]'>
                     <div className='flex flex-col h-full text-gray-600 bg-white/70 rounded-4xl border border-gray-400'>
                       <div className='flex items-center px-6 py-4 border-b border-gray-400'>
@@ -79,7 +79,7 @@ const Page =async()=>{
                             Start learning with our AI companions to see your recent sessions here
                           </p>
                             <p className='text-md mt-6'>
-                              {!user ? 'Sign in to track your learning progress' : 'Begin your first session to get started'}
+                              {!userId ? 'Sign in to track your learning progress' : 'Begin your first session to get started'}
                             </p>
                         </div>
                       </div>
