@@ -84,10 +84,13 @@ export const addSesssionHistory=async(companionId:string)=>{
 
 export const getRecentSessions=async(limit:10)=>{
     const supabase=createSupabaseClient();
+    const {userId}=await auth();
+    if(!userId) return [];
 
     const {data,error}=await supabase
                             .from('session_history')
                             .select('companions:companion_id(*)')
+                            .eq('user_id',userId)
                             .order('created_at',{ascending:false})
                             .limit(limit);
 

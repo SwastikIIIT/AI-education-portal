@@ -10,9 +10,9 @@ import React from 'react'
 export const dynamic = 'force-dynamic'
 
 const Page =async()=>{
-  const companions=await getAllCompanions({limit:3});
-  const recentSessionsCompanions=await getRecentSessions(4);
+   const companions=await getAllCompanions({limit:3});
    const {userId}=await auth();
+   const recentSessionsCompanions=await getRecentSessions(4);
    console.log("User",userId);
   
       let userBookmarks:any[]=[];
