@@ -8,7 +8,7 @@ export default function Loading() {
         <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
 
         <p className="text-lg font-semibold text-gray-800">
-         One moment, almost there... 
+         One moment, almost there ... 
         </p>
       </div>
     </div>

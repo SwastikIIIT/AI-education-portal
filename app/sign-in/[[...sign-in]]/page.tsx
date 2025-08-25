@@ -11,6 +11,7 @@ export const metadata:Metadata = {
 
 export default function Page() {
   return (
+    <>
     <main className='items-center justify-center'>
       <div className='w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center'>
         <div className='hidden lg:flex flex-col space-y-8'>
@@ -45,7 +46,7 @@ export default function Page() {
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 10V3L4 14h7v7l9-11h-7z' />
                 </svg>
               </div>
-              <span className='text-gray-700 font-medium'>Real-time Feedback</span>
+              <span className='text-gray-700 font-medium'>Quality Education</span>
             </div>
             <div className='flex items-center gap-4'>
               <div className='w-8 h-8 rounded-full bg-green-100 flex items-center justify-center'>
@@ -92,5 +93,6 @@ export default function Page() {
         </div>
       </div>
     </main>
+    </>
   )
 }
