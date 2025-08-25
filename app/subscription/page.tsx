@@ -50,7 +50,7 @@ const Subscription = () => {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">⚡</span>
               </div>
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Priority Support</h4>
@@ -68,7 +68,7 @@ const Subscription = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-500">✓</span>
-              <span>Cancel anytime</span>
+              <span>Personalized learning</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-500">✓</span>
