@@ -6,10 +6,10 @@
   background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
   text-align: center;
 ">
-🎓 Intelli Learn - AI Education Portal
+<img width="200" height="200" alt="favicon" src="https://github.com/user-attachments/assets/9ab1b84d-3c86-4fe7-b3bc-e9e5d0adb349" /> Intelli Learn - AI Education Portal
 </h1>
 
-<!-- Image placeholder with fixed size -->
+
 <img src="https://github.com/user-attachments/assets/2d841f2c-56b7-4e8f-8f1b-2ecf1025ae11"
      style="border-radius:20px"
      alt="AI Education Portal" 
