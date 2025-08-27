@@ -1,6 +1,6 @@
 <div align="center">
   
-<h1 style="
+<h1 style=" 
   font-size: 2.5em;
   font-weight: bold;
   background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
