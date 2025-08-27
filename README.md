@@ -1,13 +1,19 @@
 <div align="center">
   
-<h1 style=" 
-  font-size: 2.5em;
-  font-weight: bold;
-  background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
-  text-align: center;
-">
-<img width="200" height="200" alt="favicon" src="https://github.com/user-attachments/assets/9ab1b84d-3c86-4fe7-b3bc-e9e5d0adb349" /> Intelli Learn - AI Education Portal
-</h1>
+ <h1 style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    gap: 10px;
+  ">
+    <img width="50" height="50" alt="favicon" src="https://github.com/user-attachments/assets/9ab1b84d-3c86-4fe7-b3bc-e9e5d0adb349" />
+    Intelli Learn - AI Education Portal
+  </h1>
 
 
 <img src="https://github.com/user-attachments/assets/2d841f2c-56b7-4e8f-8f1b-2ecf1025ae11"
