@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5em;
+    font-size: 2.5em; 
     font-weight: bold;
     background: linear-gradient(to right, #b19cd9, #ffffff, #00bfff);
     -webkit-background-clip: text;
